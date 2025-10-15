@@ -1,0 +1,128 @@
+class Card:
+    def __init__(self, bank, year):
+        self.bank = bank
+        self.year = year
+
+class Mastercard(Card):
+    def __init__(self, bank, number, year):
+        super().__init__(bank, year)
+        self.brand = "Mastercard"
+        self.number = number
+
+    def info(self):
+        print(f'Банк: {self.bank} Бренд: {self.brand} Номер карты: {self.number} Год выпуска: {self.year}')
+
+
+class Visa(Card):
+    def __init__(self, bank, number, year):
+        super().__init__(bank, year)
+        self.brand = 'Visa'
+        self.number = number
+
+    def info(self):
+        print(f'Банк: {self.bank} Бренд: {self.brand} Номер карты: {self.number} Год выпуска: {self.year}')
+
+
+
+class Ultracard(Card):
+    def __init__(self, bank, number, year):
+        super().__init__(bank, year)
+        self.brend = 'Ultracard'
+        self.number = number
+
+    def info(self):
+        print(f'Банк: {self.bank} Бренд: {self.brend} Номер карты: {self.number} Год выпуска: {self.year}')
+
+
+list_card = [
+        Mastercard ("Сбербанк", 10208000010, 2023),
+        Visa('Уралбанк', 202010000000, 2021),
+        Ultracard("Тиннькофф", 20102020501, 2020)
+            ]
+
+
+; 2
+class Book():
+    def __init__(self, title, author, year, amount):
+        self.title = title
+        self.author = author
+        self.year = year
+        self.amount = amount
+
+    def info(self):
+        print(f'Название книги: {self.title} Автор книги: {self.author} Дата выпуска: {self.year} Количество выпущенных книг {self.amount}')
+        
+    def old_book(self, current_year=2025):
+        res = current_year - self.year
+        if res > 50:
+            return 'Книга считается классикой'
+        else:
+            return 'Современная книга'
+
+library = [
+    Book ("Король и Шут", 'Trost.A.G.', 1999, 150),
+    Book ('Преступление и наказание', 'Ф. Достоевский', 1866, 300),
+    Book ('Война и мир', 'Л. Толстой', 1869, 500)
+    ]
+for information in library:
+    information.info()
+    print(information.old_book())
+
+
+    ; 3
+    class BankAccount():
+    def __init__(self, name_user, balance):
+        self.name_user = name_user
+        self.__balance = balance
+
+    def get_balanced(self):
+        return self.__balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+        else:
+            print('Сумма пополнения должна быть положительной')
+        
+    def withdraw(self, amount):
+        if 0 <= amount <= self.__balance:
+            self.__balance -= amount
+        else:
+            print("Сумма не должна превышать баланс или иметь отрицательное значение")
+
+            ; 4
+class BankAccount():
+    def __init__(self, name_user, balance):
+        self.name_user = name_user
+        self.__balance = balance
+
+    def get_balanced(self):
+        return self.__balance
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+        else:
+            print('Сумма пополнения должна быть положительной')
+        
+    def withdraw(self, amount):
+        if 0 <= amount <= self.__balance:
+            self.__balance -= amount
+        else:
+            print("Сумма не должна превышать баланс или иметь отрицательное значение")
+
+    def transfer(self, other_account, amount):
+        if 0 <= amount <= self.__balance:
+            self.__balance -= amount
+            other_account.deposit(amount)
+        else:
+            print("Некорректные данные")
+
+
+acc1 = BankAccount("Дмитрий", 10000)
+acc2 = BankAccount("Алексей", 2000)
+
+print(f"До перевода: {acc1.get_balanced()} у {acc1.name_user}, {acc2.get_balanced()} у {acc2.name_user}")
+acc1.transfer(acc2, 5000) # 1 пользователь переводит 2 пользователю сумму = 
+print(f"После перевода: {acc1.get_balanced()} у {acc1.name_user}, {acc2.get_balanced()} у {acc2.name_user}")
+

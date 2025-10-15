@@ -1,0 +1,63 @@
+list_job = []
+while True:
+    print("---Добро пожаловать в меню---")
+    print("_____________________________")
+    print("_____________________________")
+    print("1. Показать список задач")
+    print("2. Изменить список задач")
+    print("3. Выход")
+
+    text = input("Пожалуйста, выберите одну их '3' позиций: ")
+    if text == '1':
+        if not list_job:
+            print("Список задач еще пустой")
+        else:
+             with open('organizer', 'r', encoding='utf-8') as r:
+                write_text = r.read()
+                print(write_text)
+
+    elif text == '2':
+        while True:
+            print("1. Создать задачу")
+            print("2. Удалить одну из задач - если список не пустой")
+            print("3. Завершить функцию")
+
+            new_text = input("Пожалуйста, выберите одну из следующих функций: ")
+
+            if new_text == '1':
+                total = input("Пожалуйста, введите новую задачу: ") 
+                list_job.append(total)
+                with open('organizer', 'a', encoding='utf-8') as f:
+                    f.write(total + '\n')  
+                print("Задача добавлена в список задач")
+
+            elif new_text == '2':
+
+                with open('organizer', 'r', encoding='utf-8') as a:
+                    fail_text = a.readlines()
+                    list_job = [line.strip() for line in fail_text] 
+                for ind, text_line in enumerate(list_job, start=1):
+                    print(f'номер задачи {ind}. задача - {text_line}')
+    
+                digit = int(input("Выберите задачу на удаление: "))
+
+                if 1 <= digit <= len(list_job):
+                    removed_text = list_job.pop(digit - 1)
+                    with open('organizer', 'w', encoding='utf-8') as f:
+                        for task in list_job:
+                            f.write(task + '\n')
+                    print("Задача удалена!")
+                else: 
+                    print("Некорректный номер задачи")
+                                
+            elif new_text == '3':
+                print("Возвращаем вас обратно в меню")
+                break
+            else: 
+                print("Некорректная команда")
+                
+    elif text == '3':
+        print("До новых встреч!")
+        break
+    else:
+        print("Неверная команда ввода, повторите попытку:")

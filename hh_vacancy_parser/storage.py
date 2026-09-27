@@ -1,7 +1,7 @@
 import sqlite3
 
 import json
-from parser import Vacancy
+from .parser import Vacancy
 
 def vacancy_exists(cursor, vacancy_id):
     cursor.execute(

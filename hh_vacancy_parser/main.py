@@ -1,7 +1,7 @@
 import argparse
 
-from parser import parse_vacancies
-from storage import save_to_db
+from .parser import parse_vacancies
+from .storage import save_to_db
 
 
 parser = argparse.ArgumentParser()
